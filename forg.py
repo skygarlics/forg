@@ -4,7 +4,8 @@ import sys
 import os
 import shutil
 
-def searchFile(dirname, func, *args, recur = 0):
+
+def searchFile(dirname, func, *args, recur=0):
     """search for file and do something.
     """
     files = os.listdir(dirname)
@@ -12,8 +13,9 @@ def searchFile(dirname, func, *args, recur = 0):
         fullpath = os.path.join(dirname, file)
         if os.path.isfile(fullpath):
             func(file, *args)
-        elif recurr and os.path.isdir(fullpath):
-            searchfile(dirname, 1)
+        elif recur and os.path.isdir(fullpath):
+            searchFile(dirname, 1)
+
 
 def organizeFile(filename, dir_from, dir_to):
     """organize file to folder by its name
@@ -37,6 +39,7 @@ def organizeFile(filename, dir_from, dir_to):
 
     # move file
     shutil.move(os.path.join(dir_from, filename), to_new)
+
 
 def normalizeName(name):
     """nomalize novel's name
@@ -65,6 +68,7 @@ def normalizeName(name):
 
     return title.strip()
 
+
 def notifyMistake(before, after):
     """notify possible mistake
     """
@@ -72,11 +76,13 @@ def notifyMistake(before, after):
     print('before: {}'.format(before))
     print('after : {}\n'.format(after))
 
+
 def splitExt(filename):
     """split filename to [name, extension]
     """
     split = filename.split('.')
-    return [''.join(split[:-1]),split[-1]]
+    return [''.join(split[:-1]), split[-1]]
+
 
 def main():
     argc = len(sys.argv)
@@ -91,5 +97,6 @@ def main():
             dir_to = sys.argv[2]
         searchFile(dir_from, organizeFile, dir_from, dir_to)
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
     main()

@@ -4,7 +4,7 @@
 
 BASE = 0xAC00
 END = 0xD7AF
-CHO = 21*28
+CHO = 21 * 28
 JUNG = 28
 
 # chosung : 0 - 18
@@ -15,9 +15,10 @@ CHOLIST_S = [u'ㄱ', u'ㄱ', u'ㄴ', u'ㄷ', u'ㄷ', u'ㄹ', u'ㅁ', u'ㅂ', u'�
 # jongsung : 0 - 27
 #JONG_LIST = [u' ', u'ㄱ', u'ㄲ', u'ㄳ', u'ㄴ', u'ㄵ', u'ㄶ', u'ㄷ', u'ㄹ', u'ㄺ', u'ㄻ', u'ㄼ', u'ㄽ', u'ㄾ', u'ㄿ', u'ㅀ', u'ㅁ', u'ㅂ', u'ㅄ', u'ㅅ', u'ㅆ', u'ㅇ', u'ㅈ', u'ㅊ', u'ㅋ', u'ㅌ', u'ㅍ', u'ㅎ']
 
-def chosung(txt, mode = 0):
+
+def chosung(txt, mode=0):
     """returns chosung of string
-    
+
     >>> chosung(u'가나다')
     'ㄱㄴㄷ'
 
@@ -32,18 +33,18 @@ def chosung(txt, mode = 0):
         if (chr_id < BASE) or (chr_id > END):
             ret.append(chara)
             continue
-            
         cho_idx = (chr_id - BASE) // CHO
         if mode == 0:
             ret.append(CHOLIST_D[cho_idx])
         else:
             ret.append(CHOLIST_S[cho_idx])
-
     return ''.join(ret)
 
-def main():
-   import doctest
-   doctest.testmod()
 
-if __name__=='__main__':
+def main():
+    import doctest
+    doctest.testmod()
+
+
+if __name__ == '__main__':
     main()
